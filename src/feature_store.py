@@ -229,6 +229,12 @@ def get_history(store_path="data/feature_store.duckdb", year_month=None):
 
 def get_snapshot_summary(store_path="data/feature_store.duckdb"):
     """Get summary statistics per monthly snapshot."""
+    if not os.path.exists(store_path):
+        fallback_csv = "reports/snapshot_summary.csv"
+        if os.path.exists(fallback_csv):
+            return pd.read_csv(fallback_csv, parse_dates=["snapshot_date"])
+        return pd.DataFrame()
+        
     con = duckdb.connect(database=store_path, read_only=True)
     result = con.execute("""
         SELECT
@@ -248,6 +254,12 @@ def get_snapshot_summary(store_path="data/feature_store.duckdb"):
 
 def get_drift_metrics(store_path="data/feature_store.duckdb"):
     """Get PSI drift metrics from the feature store."""
+    if not os.path.exists(store_path):
+        fallback_csv = "reports/drift_metrics.csv"
+        if os.path.exists(fallback_csv):
+            return pd.read_csv(fallback_csv)
+        return pd.DataFrame()
+
     con = duckdb.connect(database=store_path, read_only=True)
     try:
         result = con.execute("SELECT * FROM drift_metrics ORDER BY snapshot_date").fetchdf()

@@ -229,44 +229,41 @@ def get_history(store_path="data/feature_store.duckdb", year_month=None):
 
 def get_snapshot_summary(store_path="data/feature_store.duckdb"):
     """Get summary statistics per monthly snapshot."""
-    if not os.path.exists(store_path):
+    try:
+        con = duckdb.connect(database=store_path, read_only=True)
+        result = con.execute("""
+            SELECT
+                snapshot_date,
+                COUNT(*) as n_loans,
+                AVG(target) as default_rate,
+                AVG(loan_amnt) as avg_loan_amnt,
+                AVG(int_rate) as avg_int_rate,
+                AVG(dti) as avg_dti
+            FROM features
+            GROUP BY snapshot_date
+            ORDER BY snapshot_date
+        """).fetchdf()
+        con.close()
+        return result
+    except Exception as e:
         fallback_csv = "reports/snapshot_summary.csv"
         if os.path.exists(fallback_csv):
             return pd.read_csv(fallback_csv, parse_dates=["snapshot_date"])
         return pd.DataFrame()
-        
-    con = duckdb.connect(database=store_path, read_only=True)
-    result = con.execute("""
-        SELECT
-            snapshot_date,
-            COUNT(*) as n_loans,
-            AVG(target) as default_rate,
-            AVG(loan_amnt) as avg_loan_amnt,
-            AVG(int_rate) as avg_int_rate,
-            AVG(dti) as avg_dti
-        FROM features
-        GROUP BY snapshot_date
-        ORDER BY snapshot_date
-    """).fetchdf()
-    con.close()
-    return result
 
 
 def get_drift_metrics(store_path="data/feature_store.duckdb"):
     """Get PSI drift metrics from the feature store."""
-    if not os.path.exists(store_path):
+    try:
+        con = duckdb.connect(database=store_path, read_only=True)
+        result = con.execute("SELECT * FROM drift_metrics ORDER BY snapshot_date").fetchdf()
+        con.close()
+        return result
+    except Exception as e:
         fallback_csv = "reports/drift_metrics.csv"
         if os.path.exists(fallback_csv):
             return pd.read_csv(fallback_csv)
         return pd.DataFrame()
-
-    con = duckdb.connect(database=store_path, read_only=True)
-    try:
-        result = con.execute("SELECT * FROM drift_metrics ORDER BY snapshot_date").fetchdf()
-    except Exception:
-        result = pd.DataFrame()
-    con.close()
-    return result
 
 
 if __name__ == "__main__":

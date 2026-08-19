@@ -1,0 +1,52 @@
+[
+  {
+    "scenario": "Baseline",
+    "description": "No economic change \u2014 current conditions persist.",
+    "unemployment_delta_pp": 0.0,
+    "fed_funds_delta_pp": 0.0,
+    "income_effect_pct": 0.0,
+    "utilization_effect_pct": 0.0,
+    "dti_effect_pct": 0.0,
+    "int_rate_effect_pp": 0.0
+  },
+  {
+    "scenario": "Mild Recession",
+    "description": "Moderate economic downturn with rising unemployment.",
+    "unemployment_delta_pp": 2.0,
+    "fed_funds_delta_pp": -1.0,
+    "income_effect_pct": -5.0,
+    "utilization_effect_pct": 10.0,
+    "dti_effect_pct": 8.0,
+    "int_rate_effect_pp": 0.5
+  },
+  {
+    "scenario": "Severe Recession",
+    "description": "Deep recession with significant job losses and credit tightening.",
+    "unemployment_delta_pp": 5.0,
+    "fed_funds_delta_pp": -2.0,
+    "income_effect_pct": -15.0,
+    "utilization_effect_pct": 25.0,
+    "dti_effect_pct": 20.0,
+    "int_rate_effect_pp": 1.5
+  },
+  {
+    "scenario": "Rate Hike",
+    "description": "Federal Reserve tightening cycle with rising interest rates.",
+    "unemployment_delta_pp": 0.0,
+    "fed_funds_delta_pp": 2.0,
+    "income_effect_pct": 0.0,
+    "utilization_effect_pct": 5.0,
+    "dti_effect_pct": 3.0,
+    "int_rate_effect_pp": 2.0
+  },
+  {
+    "scenario": "Job Loss",
+    "description": "Personal job loss scenario \u2014 severe income and utilization shock.",
+    "unemployment_delta_pp": 3.0,
+    "fed_funds_delta_pp": 0.0,
+    "income_effect_pct": -30.0,
+    "utilization_effect_pct": 40.0,
+    "dti_effect_pct": 35.0,
+    "int_rate_effect_pp": 0.0
+  }
+]

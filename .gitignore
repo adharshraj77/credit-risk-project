@@ -1,0 +1,24 @@
+# Python environments
+venv/
+__pycache__/
+*.pyc
+.venv/
+
+# Data — too large for GitHub
+data/
+*.duckdb
+
+# Large generated reports (data_profile.html is 653MB)
+reports/data_profile.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Launcher scripts (local-only)
+run.bat
+run.ps1
+
+# Secrets
+kaggle.json
+.env

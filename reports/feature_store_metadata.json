@@ -1,0 +1,18 @@
+{
+  "store_path": "data/feature_store.duckdb",
+  "total_rows": 1345350,
+  "n_snapshots": 139,
+  "date_range": {
+    "start": "2007-06",
+    "end": "2018-12"
+  },
+  "drift_features": [
+    "int_rate",
+    "dti",
+    "annual_inc",
+    "loan_amnt",
+    "revol_util"
+  ],
+  "n_drift_alerts": 7,
+  "build_time_seconds": 62.3
+}

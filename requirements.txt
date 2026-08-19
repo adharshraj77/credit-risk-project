@@ -9,9 +9,9 @@ fredapi>=0.5.1
 streamlit>=1.25.0
 duckdb>=0.9.0
 pyarrow>=13.0.0
-ydata-profiling>=4.6.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 plotly>=5.15.0
 kagglehub
 joblib
+

@@ -1,3 +1,28 @@
+# Time-Aware Credit Risk Intelligence Platform
+
+An end-to-end Machine Learning platform designed to assess borrower credit risk, predict potential loan defaults, and support transparent, data-driven lending decisions.
+
+The system integrates time-aware data processing, advanced feature engineering, and predictive modeling using Logistic Regression and LightGBM, with isotonic probability calibration to produce more reliable risk estimates.
+
+Going beyond traditional credit scoring, the platform incorporates **Explainable AI (SHAP)** to identify the key factors influencing individual credit decisions and **Counterfactual Explanations (DiCE)** to demonstrate actionable changes that could improve an applicant's predicted credit profile.
+
+It also features macroeconomic stress testing using FRED economic indicators, allowing users to simulate changing economic conditions and examine potential credit-risk trajectories over a 12-month horizon.
+
+An interactive Streamlit dashboard brings these capabilities together, providing model performance analysis, individual applicant assessments, counterfactual recommendations, scenario simulations, and feature-drift monitoring.
+
+### Key Technologies
+Python | Pandas | NumPy | Scikit-learn | LightGBM | SHAP | DiCE | DuckDB | Streamlit | Plotly | FRED API
+
+### Key Capabilities
+- Credit default prediction and probability calibration.
+- Time-aware model validation to reduce temporal leakage.
+- Feature engineering using financial and borrower attributes.
+- SHAP-based global and individual prediction explanations.
+- DiCE-powered actionable counterfactual recommendations.
+- Macroeconomic stress testing and scenario simulation.
+- Time-versioned feature storage and Population Stability Index (PSI) drift monitoring.
+- Interactive dashboard for credit-risk analysis and decision support.
+
 # Time-Aware Credit Risk Model
 
 A portfolio-grade ML project with Explainable and Counterfactual Decision Support.

@@ -242,23 +242,41 @@ def load_artifacts():
 
     # Load calibrated model if available, else use raw
     cal_path = "models/calibrated_model.joblib"
-    calibrated = joblib.load(cal_path) if os.path.exists(cal_path) else model
+    calibrated = model
+    if os.path.exists(cal_path):
+        try:
+            calibrated = joblib.load(cal_path)
+        except Exception:
+            calibrated = model
 
     # Load metrics
     metrics = {}
     if os.path.exists("models/metrics.json"):
-        with open("models/metrics.json") as f:
-            metrics = json.load(f)
+        try:
+            with open("models/metrics.json") as f:
+                metrics = json.load(f)
+        except Exception:
+            metrics = {}
 
     # Load SHAP explainer
     explainer = None
     if os.path.exists("models/shap_explainer.joblib"):
-        explainer = joblib.load("models/shap_explainer.joblib")
+        try:
+            explainer = joblib.load("models/shap_explainer.joblib")
+        except Exception:
+            try:
+                import shap
+                explainer = shap.TreeExplainer(model)
+            except Exception:
+                explainer = None
 
     # Load feature types for DiCE
     feature_types = None
     if os.path.exists("models/dice_feature_types.joblib"):
-        feature_types = joblib.load("models/dice_feature_types.joblib")
+        try:
+            feature_types = joblib.load("models/dice_feature_types.joblib")
+        except Exception:
+            feature_types = None
 
     return model, calibrated, features, background, metrics, explainer, feature_types
 

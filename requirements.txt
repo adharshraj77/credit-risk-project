@@ -14,4 +14,5 @@ seaborn>=0.12.0
 plotly>=5.15.0
 kagglehub
 joblib
+numba>=0.57.0
 
